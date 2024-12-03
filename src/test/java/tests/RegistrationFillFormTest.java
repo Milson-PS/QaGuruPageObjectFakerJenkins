@@ -69,7 +69,7 @@ public class RegistrationFillFormTest extends TestBase {
         });
     }
 
-    @Tag("Simple")
+    @Tag("Regress")
     @DisplayName("Заполнение только обязательных полей формы")
     @Test
     void minimumAmountDataTest() {
@@ -100,7 +100,7 @@ public class RegistrationFillFormTest extends TestBase {
         });
     }
 
-    @Tag("Smoke")
+    @Tag("Regress")
     @DisplayName("Неправильный номер пользователя")
     @Test
     void incorrectPhoneNumberTest() {
