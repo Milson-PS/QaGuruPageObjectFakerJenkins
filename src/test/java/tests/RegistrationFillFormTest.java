@@ -31,7 +31,7 @@ public class RegistrationFillFormTest extends TestBase {
             city = random.City(state);
 
 
-    @Tag("Regress")
+    @Tag("regress")
     @DisplayName("Заполнение и проверка всех полей")
     @Test
     void fillFormTest() {
@@ -69,7 +69,7 @@ public class RegistrationFillFormTest extends TestBase {
         });
     }
 
-    @Tag("Regress")
+    @Tag("regress")
     @DisplayName("Заполнение только обязательных полей формы")
     @Test
     void minimumAmountDataTest() {
@@ -100,7 +100,7 @@ public class RegistrationFillFormTest extends TestBase {
         });
     }
 
-    @Tag("Regress")
+    @Tag("regress")
     @DisplayName("Неправильный номер пользователя")
     @Test
     void incorrectPhoneNumberTest() {
