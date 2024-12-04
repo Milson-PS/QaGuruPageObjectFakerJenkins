@@ -35,8 +35,12 @@ public class RegistrationFillFormTest extends TestBase {
     @DisplayName("Заполнение и проверка всех полей")
     @Test
     void fillFormTest() {
-        step("Открытие страницы и заполнение всех полей", () -> {
-            registrationPage.openPage()
+        step("Open form", () -> {
+            registrationPage.openPage();
+        });
+
+        step("Fill form", () -> {
+            registrationPage
                     .setFirstName(firstName)
                     .setLastName(lastName)
                     .setUserEmail(userEmail)
@@ -48,9 +52,10 @@ public class RegistrationFillFormTest extends TestBase {
                     .setPicture(picName)
                     .setCurrentAddress(currentAddress)
                     .setState(state)
-                    .setCity(city)
-                    .Submit();
+                    .setCity(city);
+            registrationPage.submit();
         });
+
         step("Проверка отображения полей", () -> {
             registrationPage
                     .checkResult("Student Name", firstName + " " + lastName)
@@ -64,14 +69,19 @@ public class RegistrationFillFormTest extends TestBase {
                     .checkResult("Address", currentAddress)
                     .checkResult("State and City", state + " " + city);
         });
-        }
+    }
+
 
     @Tag("regress")
     @DisplayName("Заполнение только обязательных полей формы")
     @Test
     void minimumAmountDataTest() {
-        step("Заполнение обязательных полей", () -> {
-            registrationPage.openPage()
+            step("Open form", () -> {
+                registrationPage.openPage();
+            });
+
+            step("Fill minimal form", () -> {
+                registrationPage
                 .setFirstName(firstName)
                 .setLastName(lastName)
                 .setUserEmail(userEmail)
@@ -80,7 +90,7 @@ public class RegistrationFillFormTest extends TestBase {
                 .setDateOfBirth(dayOfBirth, monthOfBirth, yearOfBirth)
                 .setSubjects(subjects)
                 .setHobbies(hobbies)
-                .Submit();
+                .submit();
         });
 
         step("Проверка заполнения ", () -> {
@@ -99,16 +109,22 @@ public class RegistrationFillFormTest extends TestBase {
     @DisplayName("Неправильный номер пользователя")
     @Test
     void incorrectPhoneNumberTest() {
-        registrationPage.openPage()
+            step("Open form", () -> {
+                registrationPage.openPage();
+            });
+
+            step("Fill form with invalid mobile", () -> {
+                registrationPage
                 .setFirstName(firstName)
                 .setLastName(lastName)
                 .setGender(gender)
                 .setNumber(phoneNumber)
-                .setDateOfBirth(dayOfBirth, monthOfBirth, yearOfBirth)
-                .Submit();
-
+                .setDateOfBirth(dayOfBirth, monthOfBirth, yearOfBirth);
+                registrationPage.submit();
+            });
+            step("NegativeCheck", () -> {
         registrationPage.negativeCheck();
-
+            });
     }
 }
 
