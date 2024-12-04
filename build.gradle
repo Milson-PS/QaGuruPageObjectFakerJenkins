@@ -3,25 +3,18 @@ plugins {
     id 'io.qameta.allure' version '2.12.0'
 }
 
-group = 'guru.qa'
+group = 'ru.ksandrasky'
 version = '1.0-SNAPSHOT'
-
-def selenideVersion = "7.5.1",
-    junitVersion = "5.11.3",
-    allureVersion = "2.32.0",
-    allureAdapterVersion = "2.29.0",
-    allureSelenideVersion = "2.29.0",
-    slf4jVersion = "2.0.16"
 
 allure {
     report {
-        version.set("$allureVersion")
+        version.set("2.19.0")
     }
-    adapter {
-        aspectjWeaver.set(true)
+    adapter { // отвечает за появление папочки build/allure-results
+        aspectjWeaver.set(true) //обработка аннотации @Step
         frameworks {
-            junit5 {
-                adapterVersion.set("$allureAdapterVersion")
+            junit5 { //название фреймворка
+                adapterVersion.set("2.29.0") //версия интеграции фреймворка и Allure
             }
         }
     }
@@ -31,27 +24,19 @@ repositories {
     mavenCentral()
 }
 
-compileTestJava {
-    options.encoding = 'UTF-8'
-}
-
 dependencies {
-    testImplementation (
-            "com.codeborne:selenide:$selenideVersion",
-            "org.junit.jupiter:junit-jupiter:$junitVersion",
-            "io.qameta.allure:allure-selenide:$allureSelenideVersion",
-            "org.slf4j:slf4j-simple:$slf4jVersion",
-            "com.github.javafaker:javafaker:1.0.2"
+    testImplementation(
+            "com.codeborne:selenide:6.19.1",
+            "org.junit.jupiter:junit-jupiter:5.10.0",
+            'org.slf4j:slf4j-simple:2.0.7',
+            "com.github.javafaker:javafaker:1.0.2",
+            'io.qameta.allure:allure-selenide:2.29.0'
     )
 }
 
-test {
-    useJUnitPlatform()
-}
-
 tasks.withType(Test) {
+    useJUnitPlatform()
     systemProperties(System.getProperties())
-
     testLogging {
         lifecycle {
             events "started", "skipped", "failed", "standard_error", "standard_out"
