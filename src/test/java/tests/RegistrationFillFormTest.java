@@ -76,6 +76,7 @@ public class RegistrationFillFormTest extends TestBase {
         step("Открыть страницу", () -> {
             registrationPage.openPage();
         });
+
         step("Заполнение обязательных полей", () -> {
         registrationPage.setFirstName(firstName)
                 .setLastName(lastName)

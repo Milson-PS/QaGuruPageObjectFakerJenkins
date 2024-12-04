@@ -5,10 +5,12 @@ import pages.components.CalendarComponents;
 import pages.components.RegistrationResults;
 import pages.components.TableFormComponents;
 
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 public class RegistrationPage {
+
 
     private SelenideElement firstNameInput = $("#firstName"),
             lastNameInput = $("#lastName"),
@@ -25,6 +27,7 @@ public class RegistrationPage {
             stateCityWrapper = $("#stateCity-wrapper"),
             submitClick = $("#submit");
 
+    private final String formTitle = "Student Registration Form";
     CalendarComponents calendarComponents = new CalendarComponents();
     TableFormComponents tableFormComponent = new TableFormComponents();
 
@@ -33,6 +36,7 @@ public class RegistrationPage {
         executeJavaScript("$('#fixedban').remove()");
         executeJavaScript("$('footer').remove()");
 
+        $(".practice-form-wrapper h5").shouldHave(text(formTitle));
         return this;
     }
 
