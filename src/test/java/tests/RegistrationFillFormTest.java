@@ -35,11 +35,8 @@ public class RegistrationFillFormTest extends TestBase {
     @DisplayName("Заполнение и проверка всех полей")
     @Test
     void fillFormTest() {
-        step("Открыть страницу", () -> {
-            registrationPage.openPage();
-        });
-        step("Заполнение всех полей", () -> {
-            registrationPage
+        step("Открытие страницы и заполнение всех полей", () -> {
+            registrationPage.openPage()
                     .setFirstName(firstName)
                     .setLastName(lastName)
                     .setUserEmail(userEmail)
@@ -54,7 +51,6 @@ public class RegistrationFillFormTest extends TestBase {
                     .setCity(city)
                     .Submit();
         });
-
         step("Проверка отображения полей", () -> {
             registrationPage
                     .checkResult("Student Name", firstName + " " + lastName)
@@ -68,18 +64,14 @@ public class RegistrationFillFormTest extends TestBase {
                     .checkResult("Address", currentAddress)
                     .checkResult("State and City", state + " " + city);
         });
-    }
+        }
 
     @Tag("regress")
     @DisplayName("Заполнение только обязательных полей формы")
     @Test
     void minimumAmountDataTest() {
-        step("Открыть страницу", () -> {
-            registrationPage.openPage();
-        });
-
         step("Заполнение обязательных полей", () -> {
-        registrationPage
+            registrationPage.openPage()
                 .setFirstName(firstName)
                 .setLastName(lastName)
                 .setUserEmail(userEmail)
