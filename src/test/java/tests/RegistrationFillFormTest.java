@@ -39,7 +39,8 @@ public class RegistrationFillFormTest extends TestBase {
             registrationPage.openPage();
         });
         step("Заполнение всех полей", () -> {
-            registrationPage.setFirstName(firstName)
+            registrationPage
+                    .setFirstName(firstName)
                     .setLastName(lastName)
                     .setUserEmail(userEmail)
                     .setGender(gender)
@@ -78,7 +79,8 @@ public class RegistrationFillFormTest extends TestBase {
         });
 
         step("Заполнение обязательных полей", () -> {
-        registrationPage.setFirstName(firstName)
+        registrationPage
+                .setFirstName(firstName)
                 .setLastName(lastName)
                 .setUserEmail(userEmail)
                 .setGender(gender)
